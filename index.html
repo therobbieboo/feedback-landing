@@ -261,8 +261,9 @@
         function handleSubmit(e) {
             e.preventDefault();
             const email = e.target.querySelector('input').value;
+            // Open email client with pre-filled message
+            window.location.href = 'mailto:therobbieboo@gmail.com?subject=Early Access Request&body=Please add me to the early access list. My email: ' + email;
             alert('Thanks! We\'ll notify you at ' + email);
-            // TODO: Send to backend
         }
     </script>
 </body>
