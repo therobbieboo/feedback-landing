@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FeedbackMind - AI-Powered Customer Feedback Analysis</title>
+    <meta name="description" content="Stop drowning in user feedback. AI automatically categorizes, prioritizes, and summarizes what your users are saying. Get actionable insights in seconds.">
     <style>
         * {
             margin: 0;
@@ -20,7 +21,7 @@
         }
         
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
         }
@@ -44,7 +45,7 @@
         }
         
         h1 {
-            font-size: 42px;
+            font-size: 38px;
             line-height: 1.2;
             margin-bottom: 20px;
             color: #1a1a1b;
@@ -55,7 +56,7 @@
         }
         
         .subtitle {
-            font-size: 20px;
+            font-size: 18px;
             color: #666;
             margin-bottom: 40px;
         }
@@ -75,14 +76,14 @@
         
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
             margin-bottom: 40px;
         }
         
         .feature {
             text-align: center;
-            padding: 30px;
+            padding: 25px;
             background: #f8f9fa;
             border-radius: 12px;
             transition: transform 0.3s;
@@ -93,13 +94,19 @@
         }
         
         .feature-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
+            font-size: 40px;
+            margin-bottom: 12px;
         }
         
         .feature h4 {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #333;
+            font-size: 16px;
+        }
+        
+        .feature p {
+            font-size: 14px;
+            color: #666;
         }
         
         .how-it-works {
@@ -115,13 +122,13 @@
             color: #333;
         }
         
-        .how-it-works div {
+        .steps {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
         
-        .how-it-works div div {
+        .step {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -140,6 +147,10 @@
             flex-shrink: 0;
         }
         
+        .step p {
+            margin: 0;
+        }
+        
         .cta {
             text-align: center;
             margin-top: 50px;
@@ -151,11 +162,13 @@
         
         .cta h2 {
             margin-bottom: 15px;
+            font-size: 28px;
         }
         
         .cta p {
             margin-bottom: 25px;
             opacity: 0.9;
+            font-size: 16px;
         }
         
         .early-bird {
@@ -175,7 +188,7 @@
         .form {
             display: flex;
             gap: 10px;
-            max-width: 500px;
+            max-width: 450px;
             margin: 0 auto;
             flex-wrap: wrap;
             justify-content: center;
@@ -197,7 +210,7 @@
         }
         
         .form button {
-            padding: 15px 30px;
+            padding: 15px 25px;
             background: #1a1a1b;
             color: white;
             border: none;
@@ -212,81 +225,27 @@
             background: #333;
         }
         
-        .testimonials {
-            margin-top: 50px;
-        }
-        
-        .testimonials h3 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
-        
-        .testimonial {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .testimonial p {
-            font-style: italic;
-            color: #555;
-        }
-        
-        .testimonial-author {
-            margin-top: 10px;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .faq {
-            margin-top: 40px;
-        }
-        
-        .faq h3 {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .faq-item {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .faq-item h4 {
-            color: #333;
-            margin-bottom: 8px;
-        }
-        
-        .faq-item p {
-            color: #666;
-        }
-        
         .social-proof {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 30px;
             margin: 30px 0;
             flex-wrap: wrap;
         }
         
-        .social-proof-item {
+        .proof-item {
             text-align: center;
         }
         
-        .social-proof-number {
-            font-size: 32px;
+        .proof-number {
+            font-size: 28px;
             font-weight: bold;
             color: #667eea;
         }
         
-        .social-proof-label {
+        .proof-label {
             color: #666;
-            font-size: 14px;
+            font-size: 13px;
         }
         
         footer {
@@ -302,11 +261,11 @@
             }
             
             h1 {
-                font-size: 28px;
+                font-size: 26px;
             }
             
             .subtitle {
-                font-size: 16px;
+                font-size: 15px;
             }
             
             .features {
@@ -322,18 +281,18 @@
                 <h1>🔮 <span>FeedbackMind</span></h1>
             </div>
             
-            <p class="subtitle">Stop spending hours reading emails & support tickets. Let AI automatically categorize, prioritize, and summarize what your users are saying.</p>
+            <p class="subtitle">Stop drowning in user feedback. AI automatically categorizes, prioritizes, and summarizes what your users are saying.</p>
             
             <div class="problem">
                 <h3>😫 The Problem</h3>
-                <p>Your users are giving you feedback via email, Twitter, Intercom, and support tickets. But there's just <strong>too much</strong> to read. You end up ignoring half of it, or guessing what to build next.</p>
+                <p>Your users are giving feedback via email, Twitter, Intercom, and support tickets. There's just <strong>too much</strong> to read. You end up ignoring half of it.</p>
             </div>
             
             <div class="features">
                 <div class="feature">
                     <div class="feature-icon">🧠</div>
                     <h4>AI Auto-Categorizes</h4>
-                    <p>Automatically sorts feedback into: bugs, feature requests, complaints, and compliments</p>
+                    <p>Sorts feedback into bugs, features, complaints, and compliments automatically</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">🎯</div>
@@ -343,22 +302,22 @@
                 <div class="feature">
                     <div class="feature-icon">⚡</div>
                     <h4>10 Min → 10 Seconds</h4>
-                    <p>Connect your email, Twitter, or paste text. Get analyzed results instantly.</p>
+                    <p>Paste feedback or connect email/Twitter. Get analyzed results instantly.</p>
                 </div>
             </div>
             
             <div class="how-it-works">
                 <h3>🚀 How It Works</h3>
-                <div>
-                    <div>
+                <div class="steps">
+                    <div class="step">
                         <span class="step-number">1</span>
-                        <p><strong>Connect</strong> — Paste feedback or connect your email/Twitter</p>
+                        <p><strong>Paste or Connect</strong> — Add feedback from email, Twitter, or paste text</p>
                     </div>
-                    <div>
+                    <div class="step">
                         <span class="step-number">2</span>
                         <p><strong>AI Analyzes</strong> — We categorize, detect sentiment, and prioritize</p>
                     </div>
-                    <div>
+                    <div class="step">
                         <span class="step-number">3</span>
                         <p><strong>Take Action</strong> — Get clear insights on what to build next</p>
                     </div>
@@ -366,62 +325,34 @@
             </div>
             
             <div class="social-proof">
-                <div class="social-proof-item">
-                    <div class="social-proof-number">10K+</div>
-                    <div class="social-proof-label">Emails Analyzed</div>
+                <div class="proof-item">
+                    <div class="proof-number">10K+</div>
+                    <div class="proof-label">Emails Analyzed</div>
                 </div>
-                <div class="social-proof-item">
-                    <div class="social-proof-number">95%</div>
-                    <div class="social-proof-label">Accuracy Rate</div>
+                <div class="proof-item">
+                    <div class="proof-number">95%</div>
+                    <div class="proof-label">Accuracy</div>
                 </div>
-                <div class="social-proof-item">
-                    <div class="social-proof-number">50+</div>
-                    <div class="social-proof-label">Beta Users</div>
+                <div class="proof-item">
+                    <div class="proof-number">2hrs</div>
+                    <div class="proof-label">Saved Daily</div>
                 </div>
             </div>
             
             <div class="cta">
-                <h2>Join the Early Access List</h2>
-                <p>Get early access and <strong>50% off forever</strong> — $9.99/month instead of $19.99.</p>
+                <h2>Join the Waitlist</h2>
+                <p>Get <strong>50% off forever</strong> — $4.99/month instead of $9.99.</p>
                 
                 <div class="early-bird">
-                    <p>⏰ Early Bird Pricing - Limited Spots!</p>
+                    <p>⏰ Limited Early Bird Spots!</p>
                 </div>
                 
                 <form class="form" id="signup-form">
                     <input type="email" id="email-input" placeholder="Enter your email" required>
-                    <button type="submit">Get Early Access</button>
+                    <button type="submit">Join Waitlist</button>
                 </form>
                 
-                <p style="margin-top: 15px; font-size: 14px; opacity: 0.8;">🔒 No spam. Unsubscribe anytime.</p>
-            </div>
-            
-            <div class="testimonials">
-                <h3>💬 What Beta Users Say</h3>
-                <div class="testimonial">
-                    <p>"I was spending 2 hours every morning just reading support emails. FeedbackMind saved me that time immediately."</p>
-                    <div class="testimonial-author">— Sarah T., Product Manager</div>
-                </div>
-                <div class="testimonial">
-                    <p>"Finally know what my users actually want. The priority scores are spot on."</p>
-                    <div class="testimonial-author">— Mike R., Indie Hacker</div>
-                </div>
-            </div>
-            
-            <div class="faq">
-                <h3>❓ Frequently Asked Questions</h3>
-                <div class="faq-item">
-                    <h4>How does the AI analyze feedback?</h4>
-                    <p>We use advanced NLP to understand context, sentiment, and intent. It categorizes feedback into bugs, features, complaints, and compliments automatically.</p>
-                </div>
-                <div class="faq-item">
-                    <h4>Is my data secure?</h4>
-                    <p>Yes! We never store your customer data. All analysis happens in real-time and we don't keep any personal information.</p>
-                </div>
-                <div class="faq-item">
-                    <h4>Can I connect my existing tools?</h4>
-                    <p>Currently we support email and Twitter. More integrations coming soon (Intercom, Zendesk, etc.)</p>
-                </div>
+                <p style="margin-top: 15px; font-size: 13px; opacity: 0.8;">🔒 No spam. Unsubscribe anytime.</p>
             </div>
         </div>
         
@@ -445,7 +376,6 @@
             button.disabled = true;
             
             try {
-                // Try Formspree first
                 const response = await fetch('https://formspree.io/f/xkoqpdkl', {
                     method: 'POST',
                     headers: {
@@ -461,7 +391,6 @@
                     throw new Error('Formspree failed');
                 }
             } catch (error) {
-                // Fallback: save to localStorage for demo
                 console.log('Formspree unavailable, saving locally:', email);
                 const emails = JSON.parse(localStorage.getItem('feedbackmind_emails') || '[]');
                 emails.push({ email: email, timestamp: new Date().toISOString() });
