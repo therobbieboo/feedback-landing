@@ -447,10 +447,19 @@
                     }
                 }
                 
-                const total = posCount + negCount || 1;
-                posPercent = Math.round((posCount / (posCount + negCount + 1)) * 100);
-                // Boost baseline to be more realistic
-                posPercent = Math.max(20, Math.min(80, posPercent));
+                // Balanced scoring: handle mixed feedback better
+                const total = posCount + negCount;
+                if (total === 0) {
+                    posPercent = 50; // Neutral if no keywords
+                } else if (posCount > 0 && negCount > 0) {
+                    // Mixed - give balanced score (not too extreme)
+                    posPercent = Math.round((posCount / (posCount + negCount)) * 100);
+                    posPercent = Math.max(30, Math.min(70, posPercent));
+                } else if (negCount > 0) {
+                    posPercent = Math.max(20, 100 - (negCount * 20));
+                } else {
+                    posPercent = Math.min(85, 50 + (posCount * 15));
+                }
                 negPercent = 100 - posPercent;
             }
 
