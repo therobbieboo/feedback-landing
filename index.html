@@ -318,29 +318,137 @@
             display: none;
         }
         .result.show { display: block; }
+        
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .result-icon { font-size: 24px; }
         .result-label {
             color: #10b981;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 10px;
         }
-        .result h4 {
+        
+        .result-section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .result-section:last-child { border-bottom: none; }
+        .result-section h4 {
             color: white;
-            font-size: 18px;
-            margin-bottom: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
         }
-        .result-tags {
+        
+        .sentiment-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            height: 32px;
+            overflow: hidden;
+        }
+        .sentiment-positive {
+            background: linear-gradient(90deg, #10b981, #34d399);
+            height: 100%;
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .result-tag {
-            background: rgba(99, 102, 241, 0.2);
-            color: #818cf8;
-            padding: 6px 14px;
-            border-radius: 20px;
+            align-items: center;
+            padding-left: 15px;
+            color: white;
+            font-weight: 600;
             font-size: 13px;
+        }
+        
+        .insight-items { display: flex; flex-direction: column; gap: 12px; }
+        .insight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #e2e8f0;
+        }
+        .insight-item.positive { background: rgba(16, 185, 129, 0.15); }
+        .insight-item.negative { background: rgba(239, 68, 68, 0.15); }
+        .insight-item.suggestion { background: rgba(99, 102, 241, 0.15); }
+        .insight-icon { font-size: 16px; }
+        
+        .action-priority {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #e2e8f0;
+        }
+        .action-priority.high { background: rgba(239, 68, 68, 0.15); }
+        .action-priority.medium { background: rgba(245, 158, 11, 0.15); }
+        .priority-badge {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .action-priority.high .priority-badge { background: #ef4444; }
+        .action-priority.medium .priority-badge { background: #f59e0b; }
+        
+        .result-cta {
+            text-align: center;
+            padding-top: 10px;
+        }
+        .result-cta p { color: #94a3b8; margin-bottom: 15px; }
+        
+        .processing { text-align: center; padding: 40px; }
+        .processing-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .processing-dots span {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .processing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .processing-dots span:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        .processing p { color: #94a3b8; }
+        
+        .review-source {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        .source-icon { font-size: 20px; }
+        .source-text { color: #94a3b8; font-size: 14px; }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 20px;
+            background: #818cf8;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         /* Pricing */
@@ -525,8 +633,8 @@
     <section id="demo" class="demo-section">
         <div class="container">
             <div class="section-header">
-                <h2>Try It Now</h2>
-                <p>Paste feedback, get instant insights</p>
+                <h2>See It In Action</h2>
+                <p>Watch how AI turns a Google Review into actionable insights</p>
             </div>
             <div class="demo-card">
                 <div class="demo-header">
@@ -535,17 +643,76 @@
                         <span class="demo-dot"></span>
                         <span class="demo-dot"></span>
                     </div>
-                    <span class="demo-title">Feedback Analysis Demo</span>
+                    <span class="demo-title">AI Feedback Analysis Demo</span>
                 </div>
-                <textarea class="feedback-input" rows="4" placeholder="Paste your user feedback here... e.g., 'I love the dashboard but wish it had dark mode. Also, export to PDF would be amazing!'"></textarea>
-                <button class="analyze-btn" onclick="analyze()">Analyze Feedback</button>
+                
+                <!-- Input Area -->
+                <div class="demo-input-area" id="inputArea">
+                    <div class="review-source">
+                        <span class="source-icon">⭐</span>
+                        <span class="source-text">Google Review - Sample Restaurant</span>
+                    </div>
+                    <div class="feedback-input" id="typingText"></div>
+                    <button class="analyze-btn" id="analyzeBtn" onclick="runDemo()">✨ Analyze Review</button>
+                </div>
+
+                <!-- Processing -->
+                <div class="processing" id="processing" style="display: none;">
+                    <div class="processing-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <p>AI is analyzing feedback...</p>
+                </div>
+
+                <!-- Result -->
                 <div class="result" id="result">
-                    <div class="result-label">AI Analysis Result</div>
-                    <h4>Feature Request: Dark Mode + PDF Export</h4>
-                    <div class="result-tags">
-                        <span class="result-tag">High Priority</span>
-                        <span class="result-tag">UI/UX</span>
-                        <span class="result-tag">+2 similar requests</span>
+                    <div class="result-header">
+                        <span class="result-icon">✅</span>
+                        <span class="result-label">Analysis Complete</span>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h4>📊 Sentiment Analysis</h4>
+                        <div class="sentiment-bar">
+                            <div class="sentiment-positive" style="width: 75%;">
+                                <span>Positive 75%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="result-section">
+                        <h4>🎯 Key Insights</h4>
+                        <div class="insight-items">
+                            <div class="insight-item positive">
+                                <span class="insight-icon">👍</span>
+                                <span>Great food quality and fresh ingredients</span>
+                            </div>
+                            <div class="insight-item negative">
+                                <span class="insight-icon">👎</span>
+                                <span>Slow service during lunch rush</span>
+                            </div>
+                            <div class="insight-item suggestion">
+                                <span class="insight-icon">💡</span>
+                                <span>Add online reservation system</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="result-section">
+                        <h4>🚀 Action Items</h4>
+                        <div class="action-priority high">
+                            <span class="priority-badge">HIGH</span>
+                            <span>Hire additional staff for lunch service</span>
+                        </div>
+                        <div class="action-priority medium">
+                            <span class="priority-badge">MEDIUM</span>
+                            <span>Implement online booking</span>
+                        </div>
+                    </div>
+
+                    <div class="result-cta">
+                        <p>Want to try with your own feedback?</p>
+                        <a href="#" class="btn-primary">Start Free →</a>
                     </div>
                 </div>
             </div>
@@ -591,10 +758,61 @@
     </footer>
 
     <script>
-        function analyze() {
-            const result = document.getElementById('result');
-            result.classList.add('show');
+        const sampleReview = "We came here for dinner and the food was absolutely amazing! The pasta was fresh and the steak was cooked perfectly. However, we waited almost 45 minutes for our appetizers and the waiter seemed stressed. Also, it would be great if you could add an online reservation system - it's hard to get a table on weekends. Overall would definitely recommend!";
+        
+        let currentChar = 0;
+        const typingText = document.getElementById('typingText');
+        
+        function typeText() {
+            if (currentChar < sampleReview.length) {
+                typingText.innerHTML = sampleReview.substring(0, currentChar + 1) + '<span class="typing-cursor"></span>';
+                currentChar++;
+                setTimeout(typeText, 30);
+            } else {
+                typingText.innerHTML = sampleReview;
+                setTimeout(runAnalysis, 500);
+            }
         }
+        
+        function runDemo() {
+            const btn = document.getElementById('analyzeBtn');
+            const inputArea = document.getElementById('inputArea');
+            const processing = document.getElementById('processing');
+            const result = document.getElementById('result');
+            
+            // Reset
+            result.classList.remove('show');
+            currentChar = 0;
+            typingText.innerHTML = '<span class="typing-cursor"></span>';
+            
+            // Start typing animation
+            btn.disabled = true;
+            btn.innerText = '⏳ Watch the demo...';
+            typeText();
+        }
+        
+        function runAnalysis() {
+            const inputArea = document.getElementById('inputArea');
+            const processing = document.getElementById('processing');
+            const result = document.getElementById('result');
+            const btn = document.getElementById('analyzeBtn');
+            
+            inputArea.style.display = 'none';
+            processing.style.display = 'block';
+            
+            setTimeout(() => {
+                processing.style.display = 'none';
+                result.classList.add('show');
+                btn.innerText = '✨ Replay Demo';
+                btn.disabled = false;
+                inputArea.style.display = 'block';
+            }, 2000);
+        }
+        
+        // Auto-play on load
+        window.addEventListener('load', () => {
+            setTimeout(runDemo, 1000);
+        });
     </script>
 </body>
 </html>
